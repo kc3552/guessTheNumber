@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guess a number</title>
+    <style>
+      * {
+        font-size:1em;
+        font-family: "Roboto Mono", monospace;
+        text-align: center;
+        background-color: blanchedalmond;
+      }
+
+      #checkButton{
+        border-radius: 5px;
+        margin-left: 5px;
+
+      }
+
+      .input-box-container {
+        margin: 1% auto;
+        display: flex;
+        justify-content: center;
+      }
+
+      .attempsCounter {
+        display: flex;
+        justify-content: center;
+      }
+
+      #input-box {
+        background-color: white;
+        border-radius: 5px;
+        border-color: rgb(255, 255, 255);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>Guess The Number (1 - 100)</h1>
+    </header>
+    
+    <!-- İnput and check button area -->
+    <div class="input-box-container">
+      <div class="input-div">
+        <input type="text" name="givenNumber" id="input-box" />
+      </div>
+      <div class="input-div" id="check-btn">
+        <button type="button" id="checkButton" onclick="guessNumber()">
+          CHECK
+        </button>
+      </div>
+    </div>
+
+    <!-- result area -->
+    <div id="result"></div>
+
+    <!-- image area -->
+    <div class="image-container">
+      <img src="./magic_hat.png" alt="magic_hat" style="max-width: 15%" />
+    </div>
+    <h3>Enter a number</h3>
+
+    <!-- Attemps Area -->
+    <div class="attempsCounter">
+      <div id="text">Number of attemps:</div>
+      <div id="attemp">-</div>
+    </div>
+
+    <!-- JS Code Area -->
+    <script>
+      const randomNumber = Math.floor(Math.random() * 100);
+      console.log(randomNumber);
+      let attemp = 0;
+
+      function guessNumber() {
+        let userGuessNumber = document.querySelector("#input-box").value;
+        console.log(userGuessNumber);
+
+        if (userGuessNumber == randomNumber) {
+          document.querySelector("#result").innerHTML = "Congrats, You did!";
+          attemp++;
+          document.querySelector("#attemp").innerHTML = attemp;
+        } else if (userGuessNumber > randomNumber) {
+          document.querySelector("#result").innerHTML = "DOWN!";
+          attemp++;
+          document.querySelector("#attemp").innerHTML = attemp;
+        } else if (userGuessNumber < randomNumber) {
+          document.querySelector("#result").innerHTML = "UP!";
+          attemp++;
+          document.querySelector("#attemp").innerHTML = attemp;
+        } else {
+          document.querySelector("#result").innerHTML =
+            "It is not a proper entry, Please refresh";
+        }
+      }
+    </script>
+  </body>
+</html>
